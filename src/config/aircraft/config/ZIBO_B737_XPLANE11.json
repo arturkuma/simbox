@@ -1,0 +1,448 @@
+{
+  "name": "B737",
+  "author": "FlyingArt",
+  "version": "1.0.0",
+  "simulator": "XPLANE11",
+  "store": {
+    "route": {
+      "ref": "laminar/B738/fms/flight09"
+    },
+    "nextWaypointDistance": {
+      "ref": "laminar/B738/fms/lnav_dist_next"
+    },
+    "nextWaypoint": {
+      "ref": "laminar/B738/fms/fpln_nav_id"
+    },
+    "chrono": {
+      "ref": "laminar/B738/clock/captain/chrono_seconds",
+      "parse": "return getStoreValue('vnavStatus') + ':' + chrono;"
+    },
+    "chronoMinutes": {
+      "ref": "laminar/B738/clock/captain/chrono_minutes"
+    },
+    "legs": {
+      "ref": "laminar/B738/fms/legs"
+    },
+    "heading": {
+      "ref": "laminar/B738/autopilot/mcp_hdg_dial",
+      "parse": "return _.padStart(_.round(heading, 2), 3, '0');"
+    },
+    "course": {
+      "ref": "laminar/B738/autopilot/course_pilot",
+      "parse": "return _.padStart(_.round(course, 2), 3, '0');"
+    },
+    "speed": {
+      "ref": "laminar/B738/autopilot/mcp_speed_dial_kts_mach",
+      "parse": "return !getStoreValue('vnavStatus') ? (speed < 10 ? _.trimStart(_.round(speed, 2).toFixed(2), 0) : _.padStart(_.round(speed), 3, 0)) : '';"
+    },
+    "altitude": {
+      "ref": "laminar/B738/autopilot/mcp_alt_dial"
+    },
+    "verticalSpeed": {
+      "ref": "laminar/autopilot/ap_vvi_dial",
+      "parse": "return verticalSpeed !== 0 ? (verticalSpeed > 0 ? `+${verticalSpeed}` : verticalSpeed) : '';"
+    },
+    "headingStatus": {
+      "ref": "laminar/B738/autopilot/hdg_sel_status"
+    },
+    "appStatus": {
+      "ref": "laminar/B738/autopilot/app_status"
+    },
+    "n1Status": {
+      "ref": "laminar/B738/autopilot/n1_status"
+    },
+    "speedStatus": {
+      "ref": "laminar/B738/autopilot/speed_status1"
+    },
+    "lnavStatus": {
+      "ref": "laminar/B738/autopilot/lnav_status"
+    },
+    "vnavStatus": {
+      "ref": "laminar/B738/autopilot/vnav_engaged"
+    },
+    "vorLocStatus": {
+      "ref": "laminar/B738/autopilot/vorloc_status"
+    },
+    "lvlChangeStatus": {
+      "ref": "laminar/B738/autopilot/lvl_chg_status"
+    },
+    "vsStatus": {
+      "ref": "laminar/B738/autopilot/vs_status"
+    },
+    "altHldStatus": {
+      "ref": "laminar/B738/autopilot/alt_hld_status"
+    },
+    "cmdaStatus": {
+      "ref": "laminar/B738/autopilot/cmd_a_status"
+    },
+    "cmdbStatus": {
+      "ref": "laminar/B738/autopilot/cmd_b_status"
+    },
+    "cwsaStatus": {
+      "ref": "laminar/B738/autopilot/cws_a_status"
+    },
+    "cwsbStatus": {
+      "ref": "laminar/B738/autopilot/cws_b_status"
+    },
+    "com1Freq": {
+      "ref": "sim/cockpit2/radios/actuators/com1_frequency_hz_833",
+      "parse": "return _.padEnd(_.round(com1Freq / 1000, 3).toFixed(3), 7, 0);"
+    },
+    "com1SdbyFreq": {
+      "ref": "sim/cockpit2/radios/actuators/com1_standby_frequency_hz_833",
+      "parse": "return _.padEnd(_.round(com1SdbyFreq / 1000, 3).toFixed(3), 7, 0);"
+    },
+    "com2Freq": {
+      "ref": "sim/cockpit2/radios/actuators/com2_frequency_hz_833",
+      "parse": "return _.padEnd(_.round(com2Freq / 1000, 3).toFixed(3), 7, 0);"
+    },
+    "com2SdbyFreq": {
+      "ref": "sim/cockpit2/radios/actuators/com2_standby_frequency_hz_833",
+      "parse": "return _.padEnd(_.round(com2SdbyFreq / 1000, 3).toFixed(3), 7, 0);"
+    },
+    "nav1Freq": {
+      "ref": "sim/cockpit2/radios/actuators/nav1_frequency_hz",
+      "parse": "return _.padEnd(_.round(nav1Freq / 100, 3).toFixed(2), 6, 0);"
+    },
+    "nav1SdbyFreq": {
+      "ref": "sim/cockpit2/radios/actuators/nav1_standby_frequency_hz",
+      "parse": "return _.padEnd(_.round(nav1SdbyFreq / 100, 2).toFixed(2), 6, 0);"
+    },
+    "hasLedLights": {
+      "ref": "laminar/B738/kill_led_lights",
+      "parse": "return !!hasLedLights;"
+    },
+    "landLightsRetLeftPos": {
+      "ref": "laminar/B738/switch/land_lights_ret_left_pos"
+    },
+    "landLightsRetRightPos": {
+      "ref": "laminar/B738/switch/land_lights_ret_right_pos"
+    },
+    "landLightsLeftPos": {
+      "ref": "laminar/B738/switch/land_lights_left_pos",
+      "parse": "return landLightsLeftPos ? 2 : 0;"
+    },
+    "landLightsRightPos": {
+      "ref": "laminar/B738/switch/land_lights_right_pos",
+      "parse": "return landLightsRightPos ? 2 : 0;"
+    },
+    "rwyLightLeft": {
+      "ref": "laminar/B738/toggle_switch/rwy_light_left",
+      "parse": "return rwyLightLeft ? 2 : 0;"
+    },
+    "rwyLightRight": {
+      "ref": "laminar/B738/toggle_switch/rwy_light_right",
+      "parse": "return rwyLightRight ? 2 : 0;"
+    },
+    "taxiLightPos": {
+      "ref": "laminar/b738/fmodpack/flightphase_taxi",
+      "parse": "return taxiLightPos ? 2 : 0;"
+    },
+    "logoLightPos": {
+      "ref": "laminar/B738/toggle_switch/logo_light",
+      "parse": "return logoLightPos ? 2 : 0;"
+    },
+    "strobeLightPos": {
+      "ref": "laminar/B738/toggle_switch/position_light_pos",
+      "parse": "return ({'-1': 2, '0': 1, '1': 0})[strobeLightPos];"
+    },
+    "beaconLightPos": {
+      "ref": "sim/cockpit2/switches/beacon_on",
+      "parse": "return beaconLightPos ? 2 : 0;"
+    },
+    "wheelLightPos": {
+      "ref": "sim/cockpit2/switches/generic_lights_switch[5]",
+      "parse": "return wheelLightPos ? 2 : 0;"
+    },
+    "wingLightPos": {
+      "ref": "sim/cockpit2/switches/generic_lights_switch[0]",
+      "parse": "return wingLightPos ? 2 : 0;"
+    }
+  },
+  "actions": {
+    "buttons": {
+      "chronoClick": {
+        "events": ["laminar/B738/push_button/chrono_cycle_capt"]
+      },
+      "headingButtonClick": {
+        "events": ["laminar/B738/autopilot/hdg_sel_press"]
+      },
+      "vsButtonClick": {
+        "events": ["laminar/B738/autopilot/vs_press"]
+      },
+      "n1ButtonClick": {
+        "events": ["laminar/B738/autopilot/n1_press"]
+      },
+      "speedButtonClick": {
+        "events": ["laminar/B738/autopilot/speed_press"]
+      },
+      "lvlChangeButtonClick": {
+        "events": ["laminar/B738/autopilot/lvl_chg_press"]
+      },
+      "vNavButtonClick": {
+        "events": ["laminar/B738/autopilot/vnav_press"]
+      },
+      "lNavButtonClick": {
+        "events": ["laminar/B738/autopilot/lnav_press"]
+      },
+      "vorLocButtonClick": {
+        "events": ["laminar/B738/autopilot/vorloc_press"]
+      },
+      "appButtonClick": {
+        "events": ["laminar/B738/autopilot/app_press"]
+      },
+      "altButtonClick": {
+        "events": ["laminar/B738/autopilot/alt_hld_press"]
+      },
+      "vsButtonClick": {
+        "events": ["laminar/B738/autopilot/vs_press"]
+      },
+      "vsButtonClick": {
+        "events": ["laminar/B738/autopilot/vs_press"]
+      },
+      "cmdaButtonClick": {
+        "events": ["laminar/B738/autopilot/cmd_a_press"]
+      },
+      "cmdbButtonClick": {
+        "events": ["laminar/B738/autopilot/cmd_b_press"]
+      },
+      "cwsaButtonClick": {
+        "events": ["laminar/B738/autopilot/cws_a_press"]
+      },
+      "cwsbButtonClick": {
+        "events": ["laminar/B738/autopilot/cws_b_press"]
+      },
+      "com1Flip": {
+        "events": ["sim/radios/com1_standy_flip"]
+      },
+      "com2Flip": {
+        "events": ["sim/radios/com2_standy_flip"]
+      },
+      "nav1Flip": {
+        "events": ["laminar/B738/push_button/switch_freq_nav1_press"]
+      },
+      "landLightsRetLeftPosChange0": {
+        "events": ["laminar/B738/switch/land_lights_ret_left_up"]
+      },
+      "landLightsRetLeftPosChange2": {
+        "events": ["laminar/B738/switch/land_lights_ret_left_dn"]
+      },
+      "landLightsRetRightPosChange0": {
+        "events": ["laminar/B738/switch/land_lights_ret_right_up"]
+      },
+      "landLightsRetRightPosChange2": {
+        "events": ["laminar/B738/switch/land_lights_ret_right_dn"]
+      },
+      "taxiLightPosChange0": {
+        "events": ["laminar/B738/toggle_switch/taxi_light_brigh_toggle"]
+      },
+      "taxiLightPosChange1": {
+        "events": ["laminar/B738/toggle_switch/taxi_light_brigh_toggle"]
+      },
+      "strobePositionLightsPosChange0": {
+        "events": ["laminar/B738/toggle_switch/position_light_up"]
+      },
+      "strobePositionLightsPosChange2": {
+        "events": ["laminar/B738/toggle_switch/position_light_down"]
+      },
+      "beaconLightPosChange0": {
+        "events": ["sim/lights/beacon_lights_toggle"]
+      },
+      "beaconLightPosChange1": {
+        "events": ["sim/lights/beacon_lights_toggle"]
+      },
+      "beaconLightPosChange2": {
+        "events": ["sim/lights/beacon_lights_toggle"]
+      },
+      "rwyLightLeftPosChange0": {
+        "events": ["laminar/B738/switch/rwy_light_left_toggle"]
+      },
+      "rwyLightLeftPosChange1": {
+        "events": ["laminar/B738/switch/rwy_light_left_toggle"]
+      },
+      "rwyLightRightPosChange0": {
+        "events": ["laminar/B738/switch/rwy_light_right_toggle"]
+      },
+      "rwyLightRightPosChange1": {
+        "events": ["laminar/B738/switch/rwy_light_right_toggle"]
+      },
+      "landLightLeftPosChange0": {
+        "events": ["laminar/B738/switch/land_lights_left"]
+      },
+      "landLightLeftPosChange1": {
+        "events": ["laminar/B738/switch/land_lights_left"]
+      },
+      "landLightRightPosChange0": {
+        "events": ["laminar/B738/switch/land_lights_right"]
+      },
+      "landLightRightPosChange1": {
+        "events": ["laminar/B738/switch/land_lights_right"]
+      },
+      "logoLightPosChange0": {
+        "events": ["laminar/B738/switch/logo_light_toggle"]
+      },
+      "logoLightPosChange1": {
+        "events": ["laminar/B738/switch/logo_light_toggle"]
+      },
+      "wingLightPosChange0": {
+        "events": ["laminar/B738/switch/wing_light_toggle"]
+      },
+      "wingLightPosChange1": {
+        "events": ["laminar/B738/switch/wing_light_toggle"]
+      },
+      "wheelLightPosChange0": {
+        "events": ["laminar/B738/switch/wheel_light_toggle"]
+      },
+      "wheelLightPosChange1": {
+        "events": ["laminar/B738/switch/wheel_light_toggle"]
+      }
+    },
+    "knob": {
+      "com1": [
+        {
+          "inputEvents": ["lowerKnobClockwise"],
+          "events": ["sim/radios/stby_com1_coarse_up"]
+        },
+        {
+          "inputEvents": ["lowerKnobCounterclockwise"],
+          "events": ["sim/radios/stby_com1_coarse_down"]
+        },
+        {
+          "inputEvents": ["upperKnobClockwise"],
+          "events": ["sim/radios/stby_com1_fine_up_833"]
+        },
+        {
+          "inputEvents": ["upperKnobCounterclockwise"],
+          "events": ["sim/radios/stby_com1_fine_down_833"]
+        },
+        {
+          "inputEvents": ["push"],
+          "events": ["sim/radios/com1_standy_flip"]
+        },
+        {
+          "inputEvents": ["pull"],
+          "events": ["sim/radios/com1_standy_flip"]
+        }
+      ],
+      "com2": [
+        {
+          "inputEvents": ["lowerKnobClockwise"],
+          "events": ["sim/radios/stby_com2_coarse_up"]
+        },
+        {
+          "inputEvents": ["lowerKnobCounterclockwise"],
+          "events": ["sim/radios/stby_com2_coarse_down"]
+        },
+        {
+          "inputEvents": ["upperKnobClockwise"],
+          "events": ["sim/radios/stby_com2_fine_up_833"]
+        },
+        {
+          "inputEvents": ["upperKnobCounterclockwise"],
+          "events": ["sim/radios/stby_com2_fine_down_833"]
+        },
+        {
+          "inputEvents": ["push"],
+          "events": ["sim/radios/com2_standy_flip"]
+        },
+        {
+          "inputEvents": ["pull"],
+          "events": ["sim/radios/com2_standy_flip"]
+        }
+      ],
+      "nav1": [
+        {
+          "inputEvents": ["lowerKnobClockwise"],
+          "events": ["sim/radios/stby_nav1_coarse_up"]
+        },
+        {
+          "inputEvents": ["lowerKnobCounterclockwise"],
+          "events": ["sim/radios/stby_nav1_coarse_down"]
+        },
+        {
+          "inputEvents": ["upperKnobClockwise"],
+          "events": ["sim/radios/stby_nav1_fine_up"]
+        },
+        {
+          "inputEvents": ["upperKnobCounterclockwise"],
+          "events": ["sim/radios/stby_nav1_fine_down"]
+        },
+        {
+          "inputEvents": ["push"],
+          "events": ["sim/radios/nav1_standy_flip"]
+        },
+        {
+          "inputEvents": ["pull"],
+          "events": ["sim/radios/nav1_standy_flip"]
+        }
+      ],
+      "course": [
+        {
+          "inputEvents": ["lowerKnobClockwise", "upperKnobClockwise"],
+          "events": ["laminar/B738/autopilot/course_pilot_up"]
+        },
+        {
+          "inputEvents": ["lowerKnobCounterclockwise", "upperKnobCounterclockwise"],
+          "events": ["laminar/B738/autopilot/course_pilot_dn"]
+        }
+      ],
+      "heading": [
+        {
+          "inputEvents": ["lowerKnobClockwise", "upperKnobClockwise"],
+          "events": ["laminar/B738/autopilot/heading_up"]
+        },
+        {
+          "inputEvents": ["lowerKnobCounterclockwise", "upperKnobCounterclockwise"],
+          "events": ["laminar/B738/autopilot/heading_dn"]
+        },
+        {
+          "inputEvents": ["push"],
+          "events": ["laminar/B738/autopilot/lnav_press"]
+        },
+        {
+          "inputEvents": ["pull"],
+          "events": ["laminar/B738/autopilot/hdg_sel_press"]
+        }
+      ],
+      "speed": [
+        {
+          "inputEvents": ["lowerKnobClockwise", "upperKnobClockwise"],
+          "events": ["sim/autopilot/airspeed_up"]
+        },
+        {
+          "inputEvents": ["lowerKnobCounterclockwise", "upperKnobCounterclockwise"],
+          "events": ["sim/autopilot/airspeed_down"]
+        },
+        {
+          "inputEvents": ["push", "pull"],
+          "events": ["sim/autopilot/knots_mach_toggle"]
+        }
+      ],
+      "altitude": [
+        {
+          "inputEvents": ["lowerKnobClockwise", "upperKnobClockwise"],
+          "events": ["laminar/B738/autopilot/altitude_up"]
+        },
+        {
+          "inputEvents": ["lowerKnobCounterclockwise", "upperKnobCounterclockwise"],
+          "events": ["laminar/B738/autopilot/altitude_dn"]
+        }
+      ],
+      "verticalSpeed": [
+        {
+          "inputEvents": ["lowerKnobClockwise", "upperKnobClockwise"],
+          "events": ["sim/autopilot/vertical_speed_up"]
+        },
+        {
+          "inputEvents": ["lowerKnobCounterclockwise", "upperKnobCounterclockwise"],
+          "events": ["sim/autopilot/vertical_speed_down"]
+        }
+      ]
+    }
+  },
+  "template": {
+    "autopilot": "BOEING",
+    "radios": "BOEING",
+    "lights": "BOEING"
+  }
+}
