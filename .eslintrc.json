@@ -1,0 +1,80 @@
+{
+  "extends": [
+    "airbnb"
+  ],
+  "plugins": [],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jest": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ],
+  "ignorePatterns": ["src/reportWebVitals.js"],
+  "rules": {
+    "indent": ["error", 4],
+    "import/no-named-as-default": 0,
+    "object-curly-newline": 0,
+    "import/no-extraneous-dependencies": 0,
+    "global-require": 0,
+    "comma-dangle": ["error", {
+      "arrays": "never",
+      "objects": "never",
+      "imports": "never",
+      "exports": "never",
+      "functions": "ignore"
+    }],
+    "import/prefer-default-export": 0,
+    "no-class-assign": 0,
+    "no-func-assign": 0,
+    "no-shadow": 0,
+    "arrow-parens": "off",
+    "import/no-cycle": 0,
+    "no-underscore-dangle": "off",
+    "import/extensions": 0,
+    "max-len": ["error", 180],
+    "consistent-return": 0,
+    "no-use-before-define": 0,
+    "import/no-unresolved": 0,
+    "class-methods-use-this": 0,
+    "no-useless-constructor": 0,
+    "no-unused-vars": 0,
+    "no-empty-function": 0,
+    "no-await-in-loop": 0,
+    "no-continue": 0,
+    "no-async-promise-executor": 0,
+    "react/jsx-indent": ["error", 4],
+    "react/jsx-filename-extension": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "react/button-has-type": 0,
+    "react/jsx-indent-props": 0,
+    "react/prop-types": 0,
+    "import/no-named-as-default-member": 0,
+    "react/jsx-props-no-spreading": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "no-nested-ternary": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/no-unstable-nested-components": 0
+  }
+}
