@@ -3,11 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
-import Menu from './components/Menu';
-import Home from './screens/Home';
-import Autopilot from './screens/Autopilot';
-import Radio from './screens/Radio';
-import Lights from './screens/Lights';
 import { CONFIG_REDUCER } from './store';
 import { setCommonStore, setPartialCommonStore, setSimBoxConnectionAlive } from './store/action-creator/config';
 import { connectToSocket, socket } from './services/socket';
@@ -15,27 +10,10 @@ import { handleKnobEvent, requestSimData } from './services/sim-data';
 import NoConnection from './screens/NoConnection';
 import NoSim from './screens/NoSim';
 import NoAircraftConfig from './screens/NoAircraftConfig';
+import screens from './config/screens';
+import Menu from './tiles/Menu';
 
 const Stack = createNativeStackNavigator();
-
-const screens = {
-    Home: {
-        component: Home,
-        route: ''
-    },
-    Autopilot: {
-        component: Autopilot,
-        route: 'autopilot'
-    },
-    Radio: {
-        component: Radio,
-        route: 'radio'
-    },
-    Lights: {
-        component: Lights,
-        route: 'lights'
-    }
-};
 
 const linking = {
     prefixes: [],
@@ -97,7 +75,7 @@ function Router({
     }, []);
 
     if (!masterConnectionEstablished) {
-        return <NoConnection />;
+        // return <NoConnection />;
     }
 
     if (!xPlane11 && !MSFS2020) {
