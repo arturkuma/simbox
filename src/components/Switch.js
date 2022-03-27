@@ -4,9 +4,9 @@ import { BACKGROUND_COLOR_SECONDARY } from '../config/const';
 import Text from './Text';
 
 const containerDivider = 4;
-const switchBackgroundDivider = 13;
+const switchBackgroundDivider = 7;
 const switchLegDivider = 22;
-const switchHeadDivider = 7;
+const switchHeadDivider = 5;
 
 const Container = styled.View`
   flex-direction: column;
@@ -17,11 +17,13 @@ const Container = styled.View`
 const Header = styled(Text)`
   font-size: ${props => props.scale * 20}px;
   margin-bottom: ${props => props.scale * 20}px;
+  text-align: center;
 `;
 
 const Footer = styled(Text)`
   font-size: ${props => props.scale * 20}px;
   margin-top: ${props => props.scale * 20}px;
+  text-align: center;
 `;
 
 const Row = styled.View`
@@ -52,7 +54,7 @@ const SwitchHead = styled.View`
   width: ${props => (props.size / switchHeadDivider) * (props.wide ? 2 : 1)}px;
   position: absolute;
   left: ${props => ((props.size / containerDivider) - ((props.size / switchHeadDivider) * (props.wide ? 2 : 1))) / 2};
-  top: ${props => (props.position === 0 ? 0 : (props.position === 1 ? (props.size / 2) - (props.size / switchHeadDivider / 2) : (props.size) - (props.size / switchHeadDivider)))};
+  top: ${props => (!props.position ? 0 : (props.position === 1 ? (props.size / 2) - (props.size / switchHeadDivider / 2) : (props.size) - (props.size / switchHeadDivider)))};
   border-radius: ${props => props.size / switchHeadDivider}px;
 `;
 
