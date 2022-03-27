@@ -12,7 +12,7 @@ const initialState = {
     simBoxConnectionAlive: false,
     commonStore: {
         MSFS2020: true,
-        aircraftConfig: 'ZIBO_B737_XPLANE11',
+        aircraftConfig: 'A32X_MSFS2020',
         refs: {
             'laminar/B738/autopilot/cmd_a_status': 1,
             'laminar/autopilot/ap_vvi_dial': 0,

@@ -4,6 +4,7 @@ import { CONFIG_REDUCER } from '../store';
 import { AIRBUS, BOEING } from '../enum/Template';
 import aircraftConfig from '../config/aircraft/aircraft';
 import Boeing from './LightsTemplates/Boeing';
+import Airbus from './LightsTemplates/Airbus';
 
 function Lights({ template }) {
     if (template === BOEING) {
@@ -11,7 +12,7 @@ function Lights({ template }) {
     }
 
     if (template === AIRBUS) {
-        // return <Airbus />;
+        return <Airbus />;
     }
 }
 
