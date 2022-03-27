@@ -112,7 +112,7 @@ function emitActionInfo(name) {
 function handleKnobEvent(name) {
     const aircraftConfig = getCurrentAircraftConfig();
 
-    const { activeSlot } = store.getState()[CONFIG_REDUCER];
+    const { activeSlot } = store.getState()[CONFIG_REDUCER].commonStore;
 
     const activeSlotConfig = get(aircraftConfig, ['actions', 'knob', camelCase(activeSlot)]);
 

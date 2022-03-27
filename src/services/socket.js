@@ -5,7 +5,8 @@ let socket;
 
 function connectToSocket() {
     socket = io(
-        'http://localhost:3200',
+        // 'http://localhost:3200',
+        'http://192.168.0.167:3200',
         {
             transports: ['websocket'],
             reconnection: true,

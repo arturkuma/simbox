@@ -39,7 +39,7 @@
     "redux-devtools-extension": "^2.13.9"
   },
   "private": true,
-  "homepage": "/Users/arturkuma/Documents/Projects/simbox/web-build",
+  "homepage": "/home/pi/SimBox/frontend/",
   "eslintConfig": {
     "extends": [
       "react-app",

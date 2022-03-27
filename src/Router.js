@@ -47,7 +47,7 @@ function Router({
 
         socket.on('connect', () => {
             setSocketConnected(true);
-            socket.emit('setCommonStoreProperty', { key: 'aircraftConfig', value: 'A32X_MSFS2020' });
+            socket.emit('setCommonStoreProperty', { key: 'aircraftConfig', value: 'ZIBO_B737_XPLANE11' });
         });
 
         socket.on('disconnect', () => {
@@ -70,13 +70,13 @@ function Router({
             }
 
             if (eventName === 'knobEvent') {
-                handleKnobEvent(payload);
+                // handleKnobEvent(payload);
             }
         });
     }, []);
 
     if (!masterConnectionEstablished) {
-        // return <NoConnection />;
+        return <NoConnection />;
     }
 
     if (!xPlane11 && !MSFS2020) {
@@ -89,9 +89,11 @@ function Router({
 
     return (
         <NavigationContainer linking={__DEV__ ? linking : null}>
-            <Stack.Navigator>
+            <Stack.Navigator screenOptions={{ animationEnabled: false }}>
                 {map(screens, ({ component: Component }, name) => (
-                    <Stack.Screen name={name} component={() => <ScreenWrapper><Component /></ScreenWrapper>} options={{ header: (props) => <Menu {...props} /> }} />
+                    <Stack.Screen name={name} options={{ header: (props) => <Menu {...props} /> }}>
+                        {() => <ScreenWrapper><Component /></ScreenWrapper>}
+                    </Stack.Screen>
                 ))}
             </Stack.Navigator>
         </NavigationContainer>
