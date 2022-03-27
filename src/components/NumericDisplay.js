@@ -21,7 +21,7 @@ const Header = styled.View`
 `;
 
 const HeaderText = styled(Text)`
-    font-size: 20px;
+    font-size: ${props => props.scale * 20}px;
     align-self: flex-end;
 `;
 
@@ -34,19 +34,19 @@ const NumericContainer = styled.View`
 const NumericText = styled.Text`
     color: ${props => (props.selected ? TEXT_COLOR_SECONDARY : TEXT_COLOR)};
     font-family: ${FONT_DIGITAL};
-    font-size: 55px;
+    font-size: ${props => props.scale * 55}px;
     align-self: flex-end;
 `;
 
-export default function NumericDisplay({ selected, onPress, title, value, style }) {
+export default function NumericDisplay({ selected, onPress, title, value, style, scale = 1 }) {
     return (
         <Container activeOpacity={1} onPress={onPress} selected={selected} style={style}>
             <Header>
-                <HeaderText>{title}</HeaderText>
+                <HeaderText scale={scale}>{title}</HeaderText>
             </Header>
 
             <NumericContainer selected={selected}>
-                <NumericText selected={selected}>
+                <NumericText scale={scale} selected={selected}>
                     {value || ' '}
                 </NumericText>
             </NumericContainer>
