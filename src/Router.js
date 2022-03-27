@@ -88,7 +88,7 @@ function Router({
     }
 
     return (
-        <NavigationContainer linking={linking}>
+        <NavigationContainer linking={__DEV__ ? linking : null}>
             <Stack.Navigator>
                 {map(screens, ({ component: Component }, name) => (
                     <Stack.Screen name={name} component={() => <ScreenWrapper><Component /></ScreenWrapper>} options={{ header: (props) => <Menu {...props} /> }} />
