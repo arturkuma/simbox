@@ -113,7 +113,7 @@ function Airbus({ activeSlot, setActiveSlot }) {
 }
 
 Airbus = connect(
-    ({ [CONFIG_REDUCER]: { activeSlot, commonStore } }) => ({ activeSlot, commonStore }),
+    ({ [CONFIG_REDUCER]: { commonStore } }) => ({ activeSlot: commonStore.activeSlot, commonStore }),
     { setActiveSlot }
 )(Airbus);
 

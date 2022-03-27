@@ -1,14 +1,18 @@
 import {
-    SET_ACTIVE_SLOT,
     SET_COMMON_STORE,
     SET_PARTIAL_COMMON_STORE_UPDATE,
     SET_SIMBOX_CONNECTION_ALIVE
 } from '../actions';
+import { socket } from '../../services/socket';
 
-export const setActiveSlot = (activeSlot) => ({
-    type: SET_ACTIVE_SLOT,
-    activeSlot
-});
+export const setActiveSlot = (activeSlot) => {
+    socket.emit('setCommonStoreProperty', { key: 'activeSlot', value: activeSlot });
+
+    return {
+        type: SET_PARTIAL_COMMON_STORE_UPDATE,
+        commonStorePartial: { activeSlot }
+    };
+};
 
 export const setCommonStore = (commonStore) => ({
     type: SET_COMMON_STORE,

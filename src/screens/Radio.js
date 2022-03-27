@@ -131,9 +131,8 @@ function Radio({ template, setActiveSlot }) {
 }
 
 Radio = connect(
-    ({ [CONFIG_REDUCER]: { commonStore, activeSlot } }) => ({
+    ({ [CONFIG_REDUCER]: { commonStore } }) => ({
         template: get(aircraftConfig, [get(commonStore, 'aircraftConfig'), 'template', 'radios']),
-        activeSlot,
         commonStore
     }),
     { setActiveSlot }
