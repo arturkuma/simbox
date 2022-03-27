@@ -27,7 +27,8 @@ const initialState = {
             'laminar/B738/fms/flight09': 'EPWA - EPKK',
             'laminar/B738/fms/lnav_dist_next': '119.875',
             'laminar/B738/fms/fpln_nav_id': 'OFFUK',
-            'laminar/B738/fms/legs': 'EPWA WA865 WA975 SORIX NAVUR KK875 KK982 OFFUK EPKK'
+            'laminar/B738/fms/legs': 'EPWA WA865 WA975 SORIX NAVUR KK875 KK982 OFFUK EPKK',
+            'laminar/B738/kill_led_lights': 1
         },
         simVars: {
             'L:A32NX_AUTOPILOT_SPEED_SELECTED': '-1',
