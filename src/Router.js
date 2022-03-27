@@ -12,6 +12,7 @@ import NoSim from './screens/NoSim';
 import NoAircraftConfig from './screens/NoAircraftConfig';
 import screens from './config/screens';
 import Menu from './tiles/Menu';
+import ScreenWrapper from './components/ScreenWrapper';
 
 const Stack = createNativeStackNavigator();
 
@@ -90,7 +91,7 @@ function Router({
         <NavigationContainer linking={linking}>
             <Stack.Navigator>
                 {map(screens, ({ component: Component }, name) => (
-                    <Stack.Screen name={name} component={Component} options={{ header: (props) => <Menu {...props} /> }} />
+                    <Stack.Screen name={name} component={() => <ScreenWrapper><Component /></ScreenWrapper>} options={{ header: (props) => <Menu {...props} /> }} />
                 ))}
             </Stack.Navigator>
         </NavigationContainer>

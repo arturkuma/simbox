@@ -2,24 +2,34 @@ import styled from 'styled-components/native';
 import { map } from 'lodash';
 import { TouchableOpacity } from 'react-native';
 import screens from '../config/screens';
+import Text from '../components/Text';
+import { BACKGROUND_COLOR_SECONDARY, TEXT_COLOR, TEXT_COLOR_SECONDARY } from '../config/const';
 
-const StyledMenu = styled.View`
+const Conainer = styled.View`
     flex-direction: row;
+    background-color: ${BACKGROUND_COLOR_SECONDARY};
+    padding: 0 15px;
 `;
 
-const StyledText = styled.View`
-    font-family: FONT_STANDARD;
+const Button = styled.TouchableOpacity`
+    padding: 12px;
+    margin-right: 10px;
 `;
 
-function Menu({ navigation }) {
+const StyledText = styled(Text)`
+    font-size: 25px;
+    color: ${props => (props.selected ? TEXT_COLOR_SECONDARY : TEXT_COLOR)}
+`;
+
+function Menu({ navigation, ...props }) {
     return (
-        <StyledMenu>
+        <Conainer>
             {map(screens, ({ displayName }, name) => (
-                <TouchableOpacity onPress={() => navigation.navigate(name)}>
-                    <StyledText>{displayName}</StyledText>
-                </TouchableOpacity>
+                <Button onPress={() => navigation.replace(name)}>
+                    <StyledText selected={name === props.route.name}>{displayName}</StyledText>
+                </Button>
             ))}
-        </StyledMenu>
+        </Conainer>
     );
 }
 
