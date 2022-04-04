@@ -1,4 +1,5 @@
 import {
+    SET_AIRCRAFT_CONFIGS,
     SET_COMMON_STORE,
     SET_PARTIAL_COMMON_STORE_UPDATE,
     SET_SIMBOX_CONNECTION_ALIVE
@@ -17,6 +18,11 @@ export const setActiveSlot = (activeSlot) => {
 export const setCommonStore = (commonStore) => ({
     type: SET_COMMON_STORE,
     commonStore
+});
+
+export const setAircraftConfigs = (aircraftConfigs) => ({
+    type: SET_AIRCRAFT_CONFIGS,
+    aircraftConfigs
 });
 
 export const setSimBoxConnectionAlive = (simBoxConnectionAlive) => ({

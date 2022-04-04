@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { get } from 'lodash';
 import { CONFIG_REDUCER } from '../store';
 import { AIRBUS, BOEING } from '../enum/Template';
-import aircraftConfig from '../config/aircraft/aircraft';
 import Boeing from './LightsTemplates/Boeing';
 import Airbus from './LightsTemplates/Airbus';
 
@@ -17,8 +16,8 @@ function Lights({ template }) {
 }
 
 Lights = connect(
-    ({ [CONFIG_REDUCER]: { commonStore } }) => ({
-        template: get(aircraftConfig, [get(commonStore, 'aircraftConfig'), 'template', 'radios'])
+    ({ [CONFIG_REDUCER]: { commonStore, aircraftConfigs } }) => ({
+        template: get(aircraftConfigs, [get(commonStore, 'aircraftConfig'), 'template', 'radios'])
     })
 )(Lights);
 

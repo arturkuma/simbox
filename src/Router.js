@@ -4,15 +4,21 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { CONFIG_REDUCER } from './store';
-import { setCommonStore, setPartialCommonStore, setSimBoxConnectionAlive } from './store/action-creator/config';
+import {
+    setAircraftConfigs,
+    setCommonStore,
+    setPartialCommonStore,
+    setSimBoxConnectionAlive
+} from './store/action-creator/config';
 import { connectToSocket, socket } from './services/socket';
-import { handleKnobEvent, requestSimData } from './services/sim-data';
+import { requestSimData } from './services/sim-data';
 import NoConnection from './screens/NoConnection';
 import NoSim from './screens/NoSim';
 import NoAircraftConfig from './screens/NoAircraftConfig';
 import screens from './config/screens';
 import Menu from './tiles/Menu';
 import ScreenWrapper from './components/ScreenWrapper';
+import NoAircraftConfigExists from './screens/NoAircraftConfigExists';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,7 +36,9 @@ function Router({
     simBoxConnectionAlive,
     setSimBoxConnectionAlive,
     setPartialCommonStore,
-    aircraftConfig
+    aircraftConfig,
+    aircraftConfigExist,
+    setAircraftConfigs
 }) {
     const [socketConnected, setSocketConnected] = useState(false);
 
@@ -69,8 +77,8 @@ function Router({
                 setSimBoxConnectionAlive(payload);
             }
 
-            if (eventName === 'knobEvent') {
-                // handleKnobEvent(payload);
+            if (eventName === 'aircraftConfigs') {
+                setAircraftConfigs(payload);
             }
         });
     }, []);
@@ -87,6 +95,10 @@ function Router({
         return <NoAircraftConfig />;
     }
 
+    if (!aircraftConfigExist) {
+        return <NoAircraftConfigExists />;
+    }
+
     return (
         <NavigationContainer linking={__DEV__ ? linking : null}>
             <Stack.Navigator screenOptions={{ animationEnabled: false }}>
@@ -101,13 +113,14 @@ function Router({
 }
 
 Router = connect(
-    ({ [CONFIG_REDUCER]: { commonStore, simBoxConnectionAlive } }) => ({
+    ({ [CONFIG_REDUCER]: { commonStore, aircraftConfigs, simBoxConnectionAlive } }) => ({
         simBoxConnectionAlive,
         xPlane11: get(commonStore, 'xPlane11'),
         MSFS2020: get(commonStore, 'MSFS2020'),
-        aircraftConfig: get(commonStore, 'aircraftConfig')
+        aircraftConfig: get(commonStore, 'aircraftConfig'),
+        aircraftConfigExist: !!get(aircraftConfigs, [get(commonStore, 'aircraftConfig')])
     }),
-    { setCommonStore, setSimBoxConnectionAlive, setPartialCommonStore }
+    { setCommonStore, setSimBoxConnectionAlive, setPartialCommonStore, setAircraftConfigs }
 )(Router);
 
 export default Router;

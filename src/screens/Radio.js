@@ -1,10 +1,8 @@
-import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { get } from 'lodash';
 import { useEffect } from 'react';
 import styled from 'styled-components/native';
 import { CONFIG_REDUCER } from '../store';
-import aircraftConfig from '../config/aircraft/aircraft';
 import { BOEING } from '../enum/Template';
 import { emitActionInfo, getSimValue } from '../services/sim-data';
 import { COM1, COM2, NAV1 } from '../enum/ActiveSlot';
@@ -131,8 +129,8 @@ function Radio({ template, setActiveSlot }) {
 }
 
 Radio = connect(
-    ({ [CONFIG_REDUCER]: { commonStore } }) => ({
-        template: get(aircraftConfig, [get(commonStore, 'aircraftConfig'), 'template', 'radios']),
+    ({ [CONFIG_REDUCER]: { commonStore, aircraftConfigs } }) => ({
+        template: get(aircraftConfigs, [get(commonStore, 'aircraftConfig'), 'template', 'radios']),
         commonStore
     }),
     { setActiveSlot }
