@@ -20,97 +20,26 @@ function getCurrentAircraftConfig() {
     return aircraftConfig;
 }
 
-function requestSimData() {
-    const aircraftConfig = getCurrentAircraftConfig();
-
-    if (!aircraftConfig) {
-        return;
-    }
-
-    if (aircraftConfig.simulator === MSFS2020) {
-        const requestedSimVars = [];
-
-        forEach(aircraftConfig.store, (config) => {
-            const { simVar = null } = config;
-
-            if (simVar) {
-                requestedSimVars.push(simVar);
-            }
-        });
-
-        socket.emit('setCommonStoreProperty', { key: 'requestedSimVars', value: requestedSimVars });
-    } else if (aircraftConfig.simulator === XPLANE11) {
-        const requestedRefs = [];
-
-        forEach(aircraftConfig.store, (config) => {
-            const { ref = null } = config;
-
-            if (ref) {
-                requestedRefs.push(ref);
-            }
-        });
-
-        socket.emit('setCommonStoreProperty', { key: 'requestedRefs', value: requestedRefs });
-    }
-}
-
 function getSimValue(key) {
     let value = null;
 
     const config = store.getState()[CONFIG_REDUCER];
-    const { commonStore } = config;
 
     const aircraftConfig = getCurrentAircraftConfig();
 
-    let parseConfig = get(aircraftConfig, ['store', key, 'parse']);
-
     if (aircraftConfig.simulator === XPLANE11) {
-        const refKey = get(aircraftConfig, ['store', key, 'ref']);
-
-        if (refKey) {
-            value = get(commonStore, ['refs', refKey]);
-        }
+        value = get(config, ['commonStore', 'refs', key]);
     }
 
     if (aircraftConfig.simulator === MSFS2020) {
-        const simVarKey = get(aircraftConfig, ['store', key, 'simVar', 0]);
-
-        if (simVarKey) {
-            value = get(commonStore, ['simVars', simVarKey]);
-        }
-    }
-
-    if (parseConfig) {
-        if (isArray(parseConfig)) {
-            parseConfig = parseConfig.join(' ');
-        }
-
-        // eslint-disable-next-line no-new-func
-        const parseFunction = new Function(key, 'getStoreValue', '_', parseConfig);
-        value = parseFunction(value, getSimValue, _);
+        value = get(config, ['commonStore', 'simVars', key]);
     }
 
     return value;
 }
 
 function emitActionInfo(name) {
-    const aircraftConfig = getCurrentAircraftConfig();
-
-    const eventsToSend = get(aircraftConfig, ['actions', 'buttons', name, 'events']);
-
-    if (aircraftConfig.simulator === XPLANE11) {
-        forEach(eventsToSend, (eventName) => {
-            socket.emit('xplaneEvent', eventName);
-        });
-    }
-
-    if (aircraftConfig.simulator === MSFS2020) {
-        forEach(eventsToSend, (event) => {
-            if (has(event, 'setSimVar')) {
-                socket.emit('setSimVar', event.setSimVar);
-            }
-        });
-    }
+    socket.emit('action', name);
 }
 
-export { requestSimData, getSimValue, emitActionInfo };
+export { getSimValue, emitActionInfo };

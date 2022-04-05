@@ -11,7 +11,6 @@ import {
     setSimBoxConnectionAlive
 } from './store/action-creator/config';
 import { connectToSocket, socket } from './services/socket';
-import { requestSimData } from './services/sim-data';
 import NoConnection from './screens/NoConnection';
 import NoSim from './screens/NoSim';
 import NoAircraftConfig from './screens/NoAircraftConfig';
@@ -45,17 +44,12 @@ function Router({
     const masterConnectionEstablished = socketConnected && simBoxConnectionAlive;
 
     useEffect(() => {
-        if (masterConnectionEstablished && aircraftConfig) {
-            requestSimData();
-        }
-    }, [masterConnectionEstablished, aircraftConfig]);
-
-    useEffect(() => {
         connectToSocket();
 
         socket.on('connect', () => {
             setSocketConnected(true);
-            socket.emit('setCommonStoreProperty', { key: 'aircraftConfig', value: 'ZIBO_B737_XPLANE11' });
+            // socket.emit('setCommonStoreProperty', { key: 'aircraftConfig', value: 'ZIBO_B737_XPLANE11' });
+            socket.emit('setCommonStoreProperty', { key: 'aircraftConfig', value: 'A32X_MSFS2020' });
         });
 
         socket.on('disconnect', () => {
