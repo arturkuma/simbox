@@ -7,4 +7,5 @@ export const TEXT_COLOR_SECONDARY = '#00C39C';
 export const MASTER_PADDING = '15px';
 
 export const FONT_STANDARD = 'FONT_STANDARD';
+export const FONT_STANDARD_BOLD = 'FONT_STANDARD_BOLD';
 export const FONT_DIGITAL = 'FONT_DIGITAL';

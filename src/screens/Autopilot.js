@@ -13,6 +13,8 @@ function Autopilot({ template }) {
     if (template === AIRBUS) {
         return <Airbus />;
     }
+
+    return null;
 }
 
 Autopilot = connect(

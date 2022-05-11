@@ -3,7 +3,7 @@ import Text from './Text';
 import {
     BACKGROUND_COLOR,
     BACKGROUND_COLOR_SECONDARY,
-    FONT_DIGITAL, MASTER_PADDING,
+    FONT_DIGITAL, FONT_STANDARD_BOLD, MASTER_PADDING,
     TEXT_COLOR,
     TEXT_COLOR_SECONDARY
 } from '../config/const';
@@ -23,6 +23,7 @@ const Header = styled.View`
 const HeaderText = styled(Text)`
     font-size: ${props => props.scale * 20}px;
     align-self: flex-end;
+    font-family: ${FONT_STANDARD_BOLD};
 `;
 
 const NumericContainer = styled.View`

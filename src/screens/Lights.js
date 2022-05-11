@@ -13,6 +13,8 @@ function Lights({ template }) {
     if (template === AIRBUS) {
         return <Airbus />;
     }
+
+    return null;
 }
 
 Lights = connect(

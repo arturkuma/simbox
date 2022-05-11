@@ -19,14 +19,10 @@ export const configReducer = typeToReducer(
             ...state,
             commonStore
         }),
-        [SET_AIRCRAFT_CONFIGS]: (state, { aircraftConfigs }) => {
-            console.log(aircraftConfigs);
-
-            return {
-                ...state,
-                aircraftConfigs
-            };
-        },
+        [SET_AIRCRAFT_CONFIGS]: (state, { aircraftConfigs }) => ({
+            ...state,
+            aircraftConfigs
+        }),
         [SET_SIMBOX_CONNECTION_ALIVE]: (state, { simBoxConnectionAlive }) => ({
             ...state,
             simBoxConnectionAlive

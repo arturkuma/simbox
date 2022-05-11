@@ -6,7 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 import styled from 'styled-components/native';
 import store from './src/store';
 import Router from './src/Router';
-import { FONT_DIGITAL, FONT_STANDARD } from './src/config/const';
+import { FONT_DIGITAL, FONT_STANDARD, FONT_STANDARD_BOLD } from './src/config/const';
 
 const Container = styled.View`
   width: 100%;
@@ -20,7 +20,8 @@ export default function App() {
         Promise.all([
             Font.loadAsync({
                 [FONT_DIGITAL]: require('./src/asset/font/digital-7-mono.ttf'),
-                [FONT_STANDARD]: require('./src/asset/font/Nurom-Bold.ttf')
+                [FONT_STANDARD]: require('./src/asset/font/Nurom-Light.ttf'),
+                [FONT_STANDARD_BOLD]: require('./src/asset/font/Nurom-Bold.ttf')
             })
         ]).then(() => {
             setAssetsLoaded(true);

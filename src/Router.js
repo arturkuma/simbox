@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
+import styled from 'styled-components/native';
 import { CONFIG_REDUCER } from './store';
 import {
     setAircraftConfigs,
@@ -20,6 +21,10 @@ import ScreenWrapper from './components/ScreenWrapper';
 import NoAircraftConfigExists from './screens/NoAircraftConfigExists';
 
 const Stack = createNativeStackNavigator();
+
+const SimpleScreenWrapper = styled(ScreenWrapper)`
+  padding: 0;
+`;
 
 const linking = {
     prefixes: [],
@@ -48,8 +53,6 @@ function Router({
 
         socket.on('connect', () => {
             setSocketConnected(true);
-            // socket.emit('setCommonStoreProperty', { key: 'aircraftConfig', value: 'ZIBO_B737_XPLANE11' });
-            socket.emit('setCommonStoreProperty', { key: 'aircraftConfig', value: 'A32X_MSFS2020' });
         });
 
         socket.on('disconnect', () => {
@@ -78,19 +81,19 @@ function Router({
     }, []);
 
     if (!masterConnectionEstablished) {
-        return <NoConnection />;
+        return <SimpleScreenWrapper><NoConnection /></SimpleScreenWrapper>;
     }
 
     if (!xPlane11 && !MSFS2020) {
-        return <NoSim />;
+        return <SimpleScreenWrapper><NoSim /></SimpleScreenWrapper>;
     }
 
     if (!aircraftConfig) {
-        return <NoAircraftConfig />;
+        return <SimpleScreenWrapper><NoAircraftConfig /></SimpleScreenWrapper>;
     }
 
     if (!aircraftConfigExist) {
-        return <NoAircraftConfigExists />;
+        return <SimpleScreenWrapper><NoAircraftConfigExists /></SimpleScreenWrapper>;
     }
 
     return (

@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import { CONFIG_REDUCER } from '../../store';
 import { emitActionInfo, getSimValue } from '../../services/sim-data';
 import Switch from '../../components/Switch';
-import { MASTER_PADDING } from '../../config/const';
+import { FONT_STANDARD_BOLD, MASTER_PADDING } from '../../config/const';
 import Text from '../../components/Text';
 
 const Container = styled.View`
@@ -29,6 +29,7 @@ const WrappedSwitch = styled(Switch)`
 
 const WrappedText = styled(Text)`
     text-align: center;
+    font-family: ${FONT_STANDARD_BOLD};
 `;
 
 function Boeing() {

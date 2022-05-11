@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { useEffect, useState } from 'react';
 import Text from './Text';
-import { BACKGROUND_COLOR_SECONDARY, TEXT_COLOR_SECONDARY } from '../config/const';
+import { BACKGROUND_COLOR_SECONDARY, FONT_STANDARD_BOLD, TEXT_COLOR_SECONDARY } from '../config/const';
 
 const Container = styled.TouchableOpacity`
     background-color: ${props => (props.active ? TEXT_COLOR_SECONDARY : BACKGROUND_COLOR_SECONDARY)};
@@ -19,6 +19,7 @@ const Container = styled.TouchableOpacity`
 const Label = styled(Text)`
   font-size: ${props => props.scale * 25}px;
   text-align: center;
+  font-family: ${FONT_STANDARD_BOLD};
 `;
 
 export default function Button({ title, active, onPress = () => null, style, scale = 1 }) {

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { fill } from 'lodash';
-import { BACKGROUND_COLOR_SECONDARY } from '../config/const';
+import { BACKGROUND_COLOR_SECONDARY, FONT_STANDARD_BOLD } from '../config/const';
 import Text from './Text';
 
 const containerDivider = 4;
@@ -18,12 +18,14 @@ const Header = styled(Text)`
   font-size: ${props => props.scale * 20}px;
   margin-bottom: ${props => props.scale * 20}px;
   text-align: center;
+  font-family: ${FONT_STANDARD_BOLD};
 `;
 
 const Footer = styled(Text)`
   font-size: ${props => props.scale * 20}px;
   margin-top: ${props => props.scale * 20}px;
   text-align: center;
+  font-family: ${FONT_STANDARD_BOLD};
 `;
 
 const Row = styled.View`
@@ -36,11 +38,13 @@ const LeftLabel = styled(Text)`
   font-size: ${props => props.scale * 20}px;
   width: ${props => props.scale * 50}px;
   text-align: right;
+  font-family: ${FONT_STANDARD_BOLD};
 `;
 
 const RightLabel = styled(Text)`
   font-size: ${props => props.scale * 20}px;
   width: ${props => props.scale * 50}px;
+  font-family: ${FONT_STANDARD_BOLD};
 `;
 
 const SwitchContainer = styled.View`

@@ -10,6 +10,7 @@ import { setActiveSlot } from '../store/action-creator/config';
 import NumericDisplay from '../components/NumericDisplay';
 import Button from '../components/Button';
 import Text from '../components/Text';
+import { FONT_STANDARD_BOLD } from '../config/const';
 
 const Container = styled.View`
   flex: 1;
@@ -27,6 +28,7 @@ const Row = styled.View`
 const RowHeader = styled(Text)`
   font-size: ${props => (props.scale || 1) * 18}px;
   margin-bottom: 10px;
+  font-family: ${FONT_STANDARD_BOLD};
 `;
 
 const RowContent = styled.View`
