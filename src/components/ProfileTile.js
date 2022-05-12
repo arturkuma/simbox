@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { TouchableOpacity } from 'react-native-web';
+import { TouchableOpacity } from 'react-native';
 import Text from './Text';
 import { FONT_STANDARD_BOLD } from '../config/const';
 
 const Container = styled.View`
   background-color: #1e1e1e;
-  border-radius: 0.7em;
-  padding: 1em;
-  border: 0.05em solid #3e3e3e;
+  border-radius: 10px;
+  padding: 15px;
+  border: 1px solid #3e3e3e;
 `;
 
 const HeaderContainer = styled.View`
